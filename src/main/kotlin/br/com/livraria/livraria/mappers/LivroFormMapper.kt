@@ -15,7 +15,8 @@ class LivroFormMapper(
             titulo = l.titulo,
             genero = l.genero,
             anoDePublicacao = l.anoDePublicacao,
-            autor = autorMapper.map(autorService.buscarAutorPorId(l.idAutor))
+            autor = autorMapper.map(autorService.buscarAutorPorId(l.idAutor)),
+            pedidos = arrayListOf()
         )
     }
 
