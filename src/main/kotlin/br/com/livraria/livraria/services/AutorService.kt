@@ -1,5 +1,6 @@
 package br.com.livraria.livraria.services
 
+import br.com.livraria.livraria.dtos.AtualizacaoAutorDto
 import br.com.livraria.livraria.dtos.AutorNomeView
 import br.com.livraria.livraria.dtos.AutorView
 import br.com.livraria.livraria.dtos.NovoAutorForm
@@ -32,6 +33,13 @@ class AutorService(
     fun cadastraAutor(autorDto: NovoAutorForm): AutorView {
         val autor = autorFormMapper.map(autorDto)
         repository.save(autor)
+        return autorViewMapper.map(autor)
+    }
+
+    fun atualizaAutor(autorDto: AtualizacaoAutorDto): AutorView {
+        val autor = repository.findById(autorDto.id)
+            .orElseThrow { NotFoundException(notFoundMessage) }
+        autor.nome = autorDto.nome
         return autorViewMapper.map(autor)
     }
 

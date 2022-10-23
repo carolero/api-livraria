@@ -1,5 +1,6 @@
 package br.com.livraria.livraria.services
 
+import br.com.livraria.livraria.dtos.AtualizacaoLivroDto
 import br.com.livraria.livraria.dtos.LivroView
 import br.com.livraria.livraria.dtos.NovoLivroForm
 import br.com.livraria.livraria.exceptions.NotFoundException
@@ -39,6 +40,15 @@ class LivroService(
     fun cadastraLivro(livroDto: NovoLivroForm): LivroView {
         val livro = livroFormMapper.map(livroDto)
         repository.save(livro)
+        return livroViewMapper.map(livro)
+    }
+
+    fun atualizaLivro(livroDto: AtualizacaoLivroDto): LivroView {
+        val livro = repository.findById(livroDto.id)
+            .orElseThrow { NotFoundException(notFoundMessage) }
+        livro.titulo = livroDto.titulo
+        livro.genero = livroDto.genero
+        livro.anoDePublicacao = livroDto.anoDePublicacao
         return livroViewMapper.map(livro)
     }
 

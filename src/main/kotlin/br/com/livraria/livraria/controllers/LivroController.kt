@@ -1,5 +1,6 @@
 package br.com.livraria.livraria.controllers
 
+import br.com.livraria.livraria.dtos.AtualizacaoLivroDto
 import br.com.livraria.livraria.dtos.LivroView
 import br.com.livraria.livraria.dtos.NovoLivroForm
 import br.com.livraria.livraria.services.LivroService
@@ -39,4 +40,11 @@ class LivroController(private val service: LivroService) {
         return ResponseEntity.created(uri).body(livroView)
     }
 
+    @PutMapping
+    @Transactional
+    fun atualizarLivro(@RequestBody @Valid livroDto: AtualizacaoLivroDto): ResponseEntity<LivroView> {
+        val livroView = service.atualizaLivro(livroDto)
+        return ResponseEntity.ok(livroView)
+    }
+    
 }

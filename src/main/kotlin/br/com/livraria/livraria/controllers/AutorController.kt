@@ -1,5 +1,6 @@
 package br.com.livraria.livraria.controllers
 
+import br.com.livraria.livraria.dtos.AtualizacaoAutorDto
 import br.com.livraria.livraria.dtos.AutorNomeView
 import br.com.livraria.livraria.dtos.AutorView
 import br.com.livraria.livraria.dtos.NovoAutorForm
@@ -31,6 +32,13 @@ class AutorController(private val service: AutorService) {
         uriBuilder: UriComponentsBuilder
     ): ResponseEntity<AutorView> {
         val autorView = service.cadastraAutor(autorDto)
+        return ResponseEntity.ok(autorView)
+    }
+
+    @PutMapping
+    @Transactional
+    fun atualizarAutor(@RequestBody @Valid autorDto: AtualizacaoAutorDto): ResponseEntity<AutorView> {
+        val autorView = service.atualizaAutor(autorDto)
         return ResponseEntity.ok(autorView)
     }
 
