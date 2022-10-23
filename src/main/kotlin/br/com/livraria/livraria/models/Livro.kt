@@ -13,5 +13,8 @@ data class Livro(
     var anoDePublicacao: Long,
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
-    val autor: Autor
+    val autor: Autor,
+    @JsonBackReference
+    @ManyToMany(mappedBy = "livros")
+    val pedidos: List<Pedido>
 )
