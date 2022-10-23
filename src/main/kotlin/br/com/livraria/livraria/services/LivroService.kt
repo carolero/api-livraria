@@ -52,4 +52,8 @@ class LivroService(
         return livroViewMapper.map(livro)
     }
 
+    fun deletarLivro(id: Long) {
+        repository.deleteById(id)
+    }
+
 }

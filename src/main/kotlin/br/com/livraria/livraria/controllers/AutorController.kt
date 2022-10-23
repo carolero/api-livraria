@@ -5,6 +5,7 @@ import br.com.livraria.livraria.dtos.AutorNomeView
 import br.com.livraria.livraria.dtos.AutorView
 import br.com.livraria.livraria.dtos.NovoAutorForm
 import br.com.livraria.livraria.services.AutorService
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
@@ -40,6 +41,13 @@ class AutorController(private val service: AutorService) {
     fun atualizarAutor(@RequestBody @Valid autorDto: AtualizacaoAutorDto): ResponseEntity<AutorView> {
         val autorView = service.atualizaAutor(autorDto)
         return ResponseEntity.ok(autorView)
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Transactional
+    fun deletarAutor(@PathVariable id: Long) {
+        service.deletarAutor(id)
     }
 
 }

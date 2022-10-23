@@ -6,6 +6,7 @@ import br.com.livraria.livraria.dtos.NovoLivroForm
 import br.com.livraria.livraria.services.LivroService
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
@@ -46,5 +47,11 @@ class LivroController(private val service: LivroService) {
         val livroView = service.atualizaLivro(livroDto)
         return ResponseEntity.ok(livroView)
     }
-    
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Transactional
+    fun deletarLivro(@PathVariable id: Long) {
+        service.deletarLivro(id)
+    }
 }

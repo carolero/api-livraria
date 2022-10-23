@@ -43,4 +43,8 @@ class AutorService(
         return autorViewMapper.map(autor)
     }
 
+    fun deletarAutor(id: Long) {
+        repository.deleteById(id)
+    }
+
 }
