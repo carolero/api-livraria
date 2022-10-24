@@ -8,7 +8,7 @@ data class Pedido(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
-    val valorTotal: Double,
+    val valor: Double,
     @JsonManagedReference
     @ManyToMany
     @JoinTable(

@@ -3,6 +3,7 @@ package br.com.livraria.livraria.mappers
 import br.com.livraria.livraria.dtos.NovoLivroForm
 import br.com.livraria.livraria.models.Livro
 import br.com.livraria.livraria.services.AutorService
+import org.springframework.data.jpa.domain.AbstractPersistable_.id
 import org.springframework.stereotype.Component
 
 @Component
