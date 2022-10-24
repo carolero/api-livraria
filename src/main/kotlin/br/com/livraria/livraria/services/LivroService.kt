@@ -49,6 +49,7 @@ class LivroService(
         livro.titulo = livroDto.titulo
         livro.genero = livroDto.genero
         livro.anoDePublicacao = livroDto.anoDePublicacao
+        livro.id = livroDto.id
         return livroViewMapper.map(livro)
     }
 

@@ -10,7 +10,7 @@ class PedidoViewMapper : Mapper<Pedido, PedidoView> {
     override fun map(p: Pedido): PedidoView {
         return PedidoView(
             id = p.id,
-            valorTotal = p.valorTotal,
+            valor = p.valor,
             livrosIds = p.livros.stream().map { l -> l.id }.collect(Collectors.toList())
         )
     }
